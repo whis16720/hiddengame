@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hidden Numbers</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div id="menu" class="wrapper">
+      <div class="game-title">
+        <h1>Hidden Numbers</h1>
+      </div>
+      <div class="game-parts">
+        <div class="play-button">
+          <button onclick="commonAction('menu','id-1')">Play</button>
+        </div>
+        <div class="guide-button">
+          <button onclick="commonAction('menu','id-2')">How to play</button>
+        </div>
+        <div class="ranking-button">
+          <button onclick="showRankings()">Rankings</button>
+        </div>
+      </div>
+    </div>
+    <div id="id-1" class="none">
+      <div class="level-box">
+        <img
+          src="https://image.flaticon.com/icons/png/512/54/54906.png"
+          class="close close-level"
+          onclick="commonAction('id-1','menu')"
+        />
+        <div class="level-title">Level</div>
+        <div class="level-content">
+          <div
+            class="level-items"
+            onclick="openGame('easy-id',EASY_SIZE,'play-easy-area',EASY_TIME,'countdown-easy',arrayEasy)"
+          >
+            Easy
+          </div>
+          <div
+            class="level-items"
+            onclick="openGame('medium-id',MEDIUM_SIZE,'play-medium-area',MEDIUM_TIME,'countdown-medium',arrayMedium)"
+          >
+            Medium
+          </div>
+          <div
+            class="level-items"
+            onclick="openGame('hard-id',HARD_SIZE,'play-hard-area',HARD_TIME,'countdown-hard',arrayHard)"
+          >
+            Hard
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="id-2" class="none">
+      <div class="guide-content">
+        <header class="container">
+          <img
+            src="https://image.flaticon.com/icons/png/512/54/54906.png"
+            class="close close-guide"
+            onclick="commonAction('id-2','menu')"
+          />
+          <h2>HOW TO PLAY</h2>
+        </header>
+        <div class="container">
+          <p>
+            In this game you have to click on the shuffled number boxes in an
+            increasing order for a certain amount of time. Let's go!
+          </p>
+          <br />
+          <div class="sample">
+            <span>Example, choose in order:</span>
+            <div class="cell-sample">1</div>
+            <div class="cell-sample">2</div>
+            <div class="cell-sample">3</div>
+            <div class="cell-sample">4</div>
+            <div class="cell-sample">5</div>
+          </div>
+        </div>
+        <footer class="container">
+          <br />
+          <div>BE THE BEST PLAYER!</div>
+          <img
+            src="https://www.possumkingdom.com/wp-content/uploads/2019/02/winner.png"
+            class="winner"
+          />
+        </footer>
+      </div>
+    </div>
+    <div id="id-3" class="none">
+      <div class="ranking-content">
+        <img
+          src="https://image.flaticon.com/icons/png/512/54/54906.png"
+          class="close close-rankings"
+          onclick="commonAction('id-3','menu')"
+        />
+        <div class="container">
+          <img
+            src="https://www.shareicon.net/data/2016/07/06/791653_podium_512x512.png"
+            class="ranking-img"
+          />
+          <span class="ranking-title">Rankings</span>
+        </div>
+        <div id="easy-rankings" class="ranking-table"></div>
+        <div id="medium-rankings" class="ranking-table"></div>
+        <div id="hard-rankings" class="ranking-table"></div>
+      </div>
+    </div>
+    <div id="easy-id" class="none">
+      <img
+        src="https://image.flaticon.com/icons/png/512/54/54906.png"
+        class="close close-game"
+        onclick="exitGame('easy')"
+      />
+      <div class="play-box">
+        <div id="play-easy-area"></div>
+      </div>
+      <div class="timer-score">
+        <div class="timer">
+          <p class="ta-center">TIMER</p>
+          <div id="countdown-easy" class="ta-center">1:00</div>
+        </div>
+        <div class="score">
+          <p class="ta-center">SCORE</p>
+          <div id="easy-score" class="ta-center">0</div>
+        </div>
+      </div>
+    </div>
+    <div id="medium-id" class="none">
+      <img
+        src="https://image.flaticon.com/icons/png/512/54/54906.png"
+        class="close close-game"
+        onclick="exitGame('medium')"
+      />
+      <div class="play-box">
+        <div id="play-medium-area"></div>
+      </div>
+      <div class="timer-score">
+        <div class="timer">
+          <p class="ta-center">TIMER</p>
+          <div id="countdown-medium" class="ta-center">1:30</div>
+        </div>
+        <div class="score">
+          <p class="ta-center">SCORE</p>
+          <div id="medium-score" class="ta-center">0</div>
+        </div>
+      </div>
+    </div>
+    <div id="hard-id" class="none">
+      <img
+        src="https://image.flaticon.com/icons/png/512/54/54906.png"
+        class="close close-game"
+        onclick="exitGame('hard')"
+      />
+      <div class="play-box">
+        <div id="play-hard-area"></div>
+      </div>
+      <div class="timer-score">
+        <div class="timer">
+          <p class="ta-center">TIMER</p>
+          <div id="countdown-hard" class="ta-center">2:00</div>
+        </div>
+        <div class="score">
+          <p class="ta-center">SCORE</p>
+          <div id="hard-score" class="ta-center">0</div>
+        </div>
+      </div>
+    </div>
+    <div id="form-id" class="form-container">
+      <form action="#" class="form-popup">
+        <h3>YOUR SCORE</h3>
+        <label for="input-nickname"><b>Nickname</b></label>
+        <input
+          type="text"
+          id="nickname-id"
+          class="form-input"
+          placeholder="Your Nickname"
+          name="input-nickname"
+          onkeyup="showScore()"
+        />
+        <br />
+        <span><b>Score</b></span>
+        <span id="your-score" class="ml40"></span> <br />
+        <label for="cars"><b>Level</b></label>
+        <select class="ml10" name="level-select" id="level-select">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <div class="btn-container">
+          <button class="btn" onclick="createAccount()">Save</button>
+          <button class="btn" onclick="window.location.reload()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
